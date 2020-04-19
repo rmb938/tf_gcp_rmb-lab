@@ -27,7 +27,6 @@ resource "google_service_account" "kube0-backup" {
   display_name = "Service Account for Kube0 Backups"
 }
 
-
 resource "google_storage_bucket" "kube0-backup" {
   name          = "kube0.backups.buckets.rmb938.me"
   force_destroy = true

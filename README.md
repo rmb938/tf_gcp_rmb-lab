@@ -4,6 +4,6 @@ Terraform for rmb-lab GCP Project
 ## Requirements
   * GCS Bucket with Service Account
     * `Storage Legacy Bucket Owner` 
-  * GCS Service account
+  * GCP Service Account
     * `Service Account Admin`
     * `Storage Admin`
