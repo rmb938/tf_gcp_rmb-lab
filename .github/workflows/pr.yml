@@ -1,0 +1,35 @@
+name: Terraform Plan
+
+on:
+  - pull_request
+
+jobs:
+  apply:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.2
+        with:
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Decrypt SOPS Secrets
+        uses: rmb938/sops-decrypt-action@0.1.0
+        with:
+          secrets-directory: secrets
+
+      - name: Terraform Init
+        uses: hashicorp/terraform-github-actions@v0.8.0
+        with:
+          tf_actions_version: 0.12.24
+          tf_actions_subcommand: 'init'
+
+      - name: Terraform Plan
+        uses: hashicorp/terraform-github-actions@v0.8.0
+        with:
+          tf_actions_version: 0.12.24
+          tf_actions_subcommand: 'plan'
+          args: '-out=tf.plan'
