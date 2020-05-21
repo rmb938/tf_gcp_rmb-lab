@@ -23,22 +23,17 @@ jobs:
         with:
           secrets-directory: secrets
 
-      - name: Terraform Init
-        uses: hashicorp/terraform-github-actions@v0.8.0
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1.0.1
         with:
-          tf_actions_version: 0.12.24
-          tf_actions_subcommand: 'init'
+          terraform_version: 0.12.25
+
+      - name: Terraform Init
+        run: terraform init
 
       - name: Terraform Plan
-        uses: hashicorp/terraform-github-actions@v0.8.0
-        with:
-          tf_actions_version: 0.12.24
-          tf_actions_subcommand: 'plan'
-          args: '-out=tf.plan'
+        run: terraform plan -out=tf.plan
 
       - name: Terraform Apply
-        uses: hashicorp/terraform-github-actions@v0.8.0
-        with:
-          tf_actions_version: 0.12.24
-          tf_actions_subcommand: 'apply'
-          args: 'tf.plan'
+        run: terraform apply tf.plan
+
