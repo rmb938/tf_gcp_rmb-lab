@@ -4,7 +4,7 @@ data "google_compute_image" "fedora-35" {
 }
 
 resource "google_service_account" "vault" {
-  account_id   = "vault"
+  account_id   = "hashicorp-vault"
 }
 
 resource "google_compute_instance" "vault" {
