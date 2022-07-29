@@ -64,7 +64,7 @@ resource "google_compute_instance" "hashicorp-vault" {
     initialize_params {
       size  = "10"
       type  = "pd-standard"
-      image = google_compute_instance.fedora-35.id
+      image = google_compute_image.fedora-35.id
     }
   }
   
