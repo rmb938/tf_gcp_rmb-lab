@@ -1,8 +1,3 @@
-data "google_compute_image" "fedora-35" {
-  family  = "fedora-cloud-35"
-  project = "fedora-cloud"
-}
-
 resource "google_service_account" "hashicorp-vault" {
   account_id   = "hashicorp-vault"
 }
@@ -45,6 +40,11 @@ resource "google_kms_crypto_key_iam_member" "hashicorp-vault-viewer" {
   member        = "serviceAccount:${google_service_account.hashicorp-vault.email}"
 }
 
+data "google_compute_image" "fedora-35" {
+  family  = "fedora-cloud-35"
+  project = "fedora-cloud"
+}
+
 resource "google_compute_instance" "hashicorp-vault" {
   name = "hashicorp-vault"
   machine_type = "e2-micro"
@@ -65,7 +65,7 @@ resource "google_compute_instance" "hashicorp-vault" {
     initialize_params {
       size  = "10"
       type  = "pd-standard"
-      image = "debian-cloud/debian-9"
+      image = google_compute_instance.fedora-35.id
     }
   }
   
