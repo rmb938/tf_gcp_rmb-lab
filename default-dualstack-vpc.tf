@@ -21,7 +21,7 @@ resource "google_compute_firewall" "default-dualstack-allow-icmp" {
     protocol = "icmp"
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/0", "::/0"]
 }
 
 resource "google_compute_firewall" "default-dualstack-allow-ssh" {
@@ -34,7 +34,7 @@ resource "google_compute_firewall" "default-dualstack-allow-ssh" {
   }
 
   target_tags   = ["public-ssh-access"]
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/0", "::/0"]
 }
 
 resource "google_compute_firewall" "default-dualstack-allow-tailscale" {
@@ -46,6 +46,6 @@ resource "google_compute_firewall" "default-dualstack-allow-tailscale" {
     ports     = ["41641"]
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/0", "::/0"]
   target_tags = ["tailscale"]
 }
