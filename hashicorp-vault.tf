@@ -56,7 +56,7 @@ resource "google_compute_instance" "hashicorp-vault" {
   tags = ["public-ssh-access", "tailscale"]
   
   network_interface {
-    subnetwork = google_compute_network.default-dualstack.id
+    subnetwork = google_compute_network.default-dualstack.name
     stack_type = "IPV4_IPV6"
   }
   
