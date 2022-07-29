@@ -58,6 +58,14 @@ resource "google_compute_instance" "hashicorp-vault" {
   network_interface {
     subnetwork = google_compute_subnetwork.default-dualstack-us-central1.name
     stack_type = "IPV4_IPV6"
+    
+    access_config {
+      network_tier = "STANDARD"
+    }
+    
+    ipv6_access_config {
+      network_tier = "STANDARD"
+    }
   }
   
   boot_disk {
