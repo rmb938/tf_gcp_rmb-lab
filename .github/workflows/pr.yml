@@ -20,7 +20,7 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 0.13.4
+          terraform_version: 0.12.25
 
       - name: Decrypt SOPS Secrets
         uses: rmb938/sops-decrypt-action@0.1.0
