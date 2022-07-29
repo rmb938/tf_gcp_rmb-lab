@@ -48,13 +48,15 @@ resource "google_service_account" "packer" {
 }
 
 resource "google_project_iam_member" "packer-compute-admin" {
-  role   = "roles/compute.admin"
-  member = "serviceAccount:${google_service_account.packer.email}"
+  role    = "roles/compute.admin"
+  member  = "serviceAccount:${google_service_account.packer.email}"
+  project = "rmb-lab"
 }
 
 resource "google_project_iam_member" "packer-service-account-user" {
-  role   = "roles/iam.serviceAccountUser"
-  member = "serviceAccount:${google_service_account.packer.email}"
+  role    = "roles/iam.serviceAccountUser"
+  member  = "serviceAccount:${google_service_account.packer.email}"
+  project = "rmb-lab"
 }
 
 # Kubernetes Backup Buckets
