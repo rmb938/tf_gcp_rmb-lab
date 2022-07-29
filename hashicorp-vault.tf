@@ -32,7 +32,7 @@ resource "google_compute_instance" "hashicorp-vault" {
   }
   
   service_account {
-    email  = google_service_account.vault.email
+    email  = google_service_account.hashicorp-vault.email
     scopes = ["cloud-platform"]
   }
 }
