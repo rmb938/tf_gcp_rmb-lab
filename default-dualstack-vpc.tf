@@ -1,21 +1,21 @@
-resource "google_compute_network" "default_dualstack" {
+resource "google_compute_network" "default-dualstack" {
   name                    = "default-dualstack"
   auto_create_subnetworks = false
   routing_mode            = "REGIONAL"
 }
 
-resource "google_compute_subnetwork" "default_dualstack_us-central1" {
+resource "google_compute_subnetwork" "default-dualstack-us-central1" {
   name             = "us-central1"
   ip_cidr_range    = "10.128.0.0/20"
   region           = "us-central1"
-  network          = google_compute_network.default_dualstack.id
+  network          = google_compute_network.default-dualstack.id
   stack_type       = "IPV4_IPV6"
   ipv6_access_type = "EXTERNAL"
 }
 
-resource "google_compute_firewall" "default_dualstack_allow-icmp" {
-  name    = "default-dualstack_allow-icmp"
-  network = google_compute_network.default_dualstack.name
+resource "google_compute_firewall" "default-dualstack-allow-icmp" {
+  name    = "default-dualstack-allow-icmp"
+  network = google_compute_network.default-dualstack.name
 
   allow {
     protocol = "icmp"
@@ -24,9 +24,9 @@ resource "google_compute_firewall" "default_dualstack_allow-icmp" {
   source_ranges = ["0.0.0.0/0"]
 }
 
-resource "google_compute_firewall" "default_dualstack_allow-ssh" {
-  name    = "default-dualstack_allow-ssh"
-  network = google_compute_network.default_dualstack.name
+resource "google_compute_firewall" "default-dualstack-allow-ssh" {
+  name    = "default-dualstack-allow-ssh"
+  network = google_compute_network.default-dualstack.name
 
   allow {
     protocol  = "tcp"
@@ -37,9 +37,9 @@ resource "google_compute_firewall" "default_dualstack_allow-ssh" {
   source_ranges = ["0.0.0.0/0"]
 }
 
-resource "google_compute_firewall" "default_dualstack_allow-tailscale" {
-  name    = "default-dualstack_allow-tailscale"
-  network = google_compute_network.default_dualstack.name
+resource "google_compute_firewall" "default-dualstack-allow-tailscale" {
+  name    = "default-dualstack-allow-tailscale"
+  network = google_compute_network.default-dualstack.name
 
   allow {
     protocol  = "udp"
