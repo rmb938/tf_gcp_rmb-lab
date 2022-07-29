@@ -10,5 +10,7 @@ Terraform for rmb-lab GCP Project
     * `Compute Network Admin`
     * `Compute Security Admin`
     * `Project IAM Admin`
+    * `Cloud KMS Admin`
+    * `Compute Instance Admin (v1)`
   * Cloud Resource Manager API Enabled
 
