@@ -21,7 +21,6 @@ resource "google_kms_key_ring" "hashicorp-vault" {
 resource "google_kms_crypto_key" "hashicorp-vault" {
   name            = "hashicorp-vault"
   key_ring        = google_kms_key_ring.hashicorp-vault.id
-  rotation_period = "15780000s"
 
   lifecycle {
     prevent_destroy = true
