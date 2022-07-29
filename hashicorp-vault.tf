@@ -4,7 +4,7 @@ resource "google_service_account" "hashicorp-vault" {
 
 resource "google_storage_bucket" "hashicorp-vault" {
   name          = "rmb-lab-hashicorp-vault"
-  location      = "US"
+  location      = "US-CENTRAL1"
 }
 
 resource "google_storage_bucket_iam_member" "hashicorp-vault" {
