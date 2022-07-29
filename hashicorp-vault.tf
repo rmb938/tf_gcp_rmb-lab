@@ -39,7 +39,7 @@ resource "google_kms_crypto_key_iam_member" "hashicorp-vault-viewer" {
   member        = "serviceAccount:${google_service_account.hashicorp-vault.email}"
 }
 
-data "google_compute_image" "fedora_35" {
+data "google_compute_image" "fedora-35" {
   family  = "fedora-cloud-35"
   project = "fedora-cloud"
 }
@@ -64,7 +64,7 @@ resource "google_compute_instance" "hashicorp-vault" {
     initialize_params {
       size  = "10"
       type  = "pd-standard"
-      image = google_compute_image.fedora_35.id
+      image = data.google_compute_image.fedora-35.id
     }
   }
   
