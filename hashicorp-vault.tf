@@ -1,20 +1,20 @@
 data "google_compute_image" "fedora-35" {
-  family  = "fedora-35"
+  family  = "fedora-cloud-35"
   project = "fedora-cloud"
 }
 
-resource "google_service_account" "vault" {
+resource "google_service_account" "hashicorp-vault" {
   account_id   = "hashicorp-vault"
 }
 
-resource "google_compute_instance" "vault" {
-  name = "vault"
+resource "google_compute_instance" "hashicorp-vault" {
+  name = "hashicorp-vault"
   machine_type = "e2-micro"
   zone         = "us-central1-a"
   
   allow_stopping_for_update = true
   
-  hostname = "vault.rmb938.github.beta.tailscale.net"
+  hostname = "hashicorp-vault.rmb938.github.beta.tailscale.net"
   
   tags = ["public-ssh-access", "tailscale"]
   
