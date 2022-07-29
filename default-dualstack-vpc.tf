@@ -15,7 +15,7 @@ resource "google_compute_subnetwork" "default_dualstack_us-central1" {
 
 resource "google_compute_firewall" "default_dualstack_allow-icmp" {
   name    = "default-dualstack_allow-icmp"
-  network = google_compute_network.default_dualstackt.name
+  network = google_compute_network.default_dualstack.name
 
   allow {
     protocol = "icmp"
@@ -26,7 +26,7 @@ resource "google_compute_firewall" "default_dualstack_allow-icmp" {
 
 resource "google_compute_firewall" "default_dualstack_allow-ssh" {
   name    = "default-dualstack_allow-ssh"
-  network = google_compute_network.default_dualstackt.name
+  network = google_compute_network.default_dualstack.name
 
   allow {
     protocol  = "tcp"
@@ -39,7 +39,7 @@ resource "google_compute_firewall" "default_dualstack_allow-ssh" {
 
 resource "google_compute_firewall" "default_dualstack_allow-tailscale" {
   name    = "default-dualstack_allow-tailscale"
-  network = google_compute_network.default_dualstackt.name
+  network = google_compute_network.default_dualstack.name
 
   allow {
     protocol  = "udp"
