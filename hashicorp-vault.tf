@@ -62,6 +62,10 @@ resource "google_compute_instance" "hashicorp-vault" {
     access_config {
       network_tier = "STANDARD"
     }
+    
+    ipv6_access_config {
+      network_tier = "STANDARD"
+    }
   }
   
   boot_disk {
