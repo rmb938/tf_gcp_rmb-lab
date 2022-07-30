@@ -64,7 +64,7 @@ resource "google_compute_instance" "hashicorp-vault" {
     }
     
     ipv6_access_config {
-      network_tier = "STANDARD"
+      network_tier = "PREMIUM"
     }
   }
   
