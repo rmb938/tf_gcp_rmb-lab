@@ -53,7 +53,7 @@ resource "google_compute_instance" "hashicorp-vault" {
   
   hostname = "hashicorp-vault.rmb938.github.beta.tailscale.net"
   
-  tags = ["public-ssh-access", "tailscale"]
+  tags = ["tailscale"]
   
   network_interface {
     subnetwork = google_compute_subnetwork.default-dualstack-us-central1.name
