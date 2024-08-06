@@ -8,20 +8,22 @@ jobs:
     name: Terraform Plan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: 'google-github-actions/auth@v0'
+      # TODO: change to workload federation
+      - uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.GCP_SA_KEY }}'
           export_environment_variables: true
 
       - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
+        uses: 'google-github-actions/setup-gcloud@v2'
 
-      - uses: hashicorp/setup-terraform@v1
+      - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 0.13.4
+          terraform_version: "1.9.3"
 
+      # TODO: switch to something else
       - name: Decrypt SOPS Secrets
         uses: rmb938/sops-decrypt-action@0.1.0
         with:
