@@ -13,5 +13,6 @@ Terraform for rmb-lab GCP Project
     * `Cloud KMS Admin`
     * `Compute Instance Admin (v1)`
     * `Service Account User`
+    * `IAM Workload Identity Pool Admin`
   * Cloud Resource Manager API Enabled
 
