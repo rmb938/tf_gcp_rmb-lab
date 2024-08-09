@@ -11,7 +11,7 @@ data "github_repository" "tf_hashicorp_vault" {
 resource "google_iam_workload_identity_pool_provider" "gha_tf_hashicorp_vault" {
   workload_identity_pool_id          = google_iam_workload_identity_pool.github-actions.workload_identity_pool_id
   workload_identity_pool_provider_id = "gha-tf-hashicorp-vault"
-  attribute_condition                = "assertion.aud == 'https://github.com/rmb938' && assertion.repository_id == '${data.github_repository.tf_hashicorp_vault.repo_id}'"
+  attribute_condition                = "assertion.repository_id == '${data.github_repository.tf_hashicorp_vault.repo_id}'"
   attribute_mapping = {
     "google.subject"          = "assertion.sub"
     "attribute.aud"           = "assertion.aud"
