@@ -35,5 +35,5 @@ resource "google_storage_bucket" "tf_hashicorp_vault" {
 resource "google_storage_bucket_iam_member" "tf_hashicorp_vault" {
   bucket = google_storage_bucket.tf_hashicorp_vault.name
   role   = "roles/storage.objectAdmin"
-  member = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github-actions.id}/attribute.repository_id/${data.github_repository.tf_hashicorp_vault.repo_id}"
+  member = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github-actions.name}/attribute.repository_id/${data.github_repository.tf_hashicorp_vault.repo_id}"
 }
