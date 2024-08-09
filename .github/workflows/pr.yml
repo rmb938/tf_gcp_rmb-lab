@@ -24,6 +24,7 @@ jobs:
           terraform_version: "1.9.3"
 
       # TODO: switch to something else
+      # The only secrets we have are gcp sa's so we could just store in gha secrets
       - name: Decrypt SOPS Secrets
         uses: rmb938/sops-decrypt-action@0.1.0
         with:

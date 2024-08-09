@@ -1,3 +1,4 @@
 secrets/decrypted/*
 !secrets/decrypted/.gitkeep
 .terraform
+.terraform.lock.hcl
