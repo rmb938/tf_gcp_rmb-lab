@@ -9,7 +9,7 @@ resource "google_iam_workload_identity_pool_provider" "gha_tf_hashicorp_vault" {
   workload_identity_pool_provider_id = "gha-tf-hashicorp-vault"
   attribute_condition                = "assertion.repository_id == '840079927'"
   attribute_mapping = {
-    "google.subject" = "attribute.repository_id=assertion.repository_id"
+    "google.subject" = "assertion.repository_id"
   }
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
