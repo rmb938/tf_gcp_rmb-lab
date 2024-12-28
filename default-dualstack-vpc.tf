@@ -22,6 +22,7 @@ resource "google_compute_firewall" "default-dualstack-allow-icmp-ipv4" {
   }
 
   source_ranges = ["0.0.0.0/0"]
+  priority = 65534
 }
 
 resource "google_compute_firewall" "default-dualstack-allow-icmp-ipv6" {
@@ -33,6 +34,7 @@ resource "google_compute_firewall" "default-dualstack-allow-icmp-ipv6" {
   }
 
   source_ranges = ["::/0"]
+  priority = 65534
 }
 
 resource "google_compute_firewall" "default-dualstack-allow-ssh-ipv4" {
@@ -46,6 +48,7 @@ resource "google_compute_firewall" "default-dualstack-allow-ssh-ipv4" {
 
   target_tags   = ["public-ssh-access"]
   source_ranges = ["0.0.0.0/0"]
+  priority = 65534
 }
 
 
@@ -60,6 +63,7 @@ resource "google_compute_firewall" "default-dualstack-allow-ssh-ipv6" {
 
   target_tags   = ["public-ssh-access"]
   source_ranges = ["::/0"]
+  priority = 65534
 }
 
 resource "google_compute_firewall" "default-dualstack-allow-tailscale-ipv4" {
@@ -73,6 +77,7 @@ resource "google_compute_firewall" "default-dualstack-allow-tailscale-ipv4" {
 
   source_ranges = ["0.0.0.0/0"]
   target_tags = ["tailscale"]
+  priority = 65534
 }
 
 resource "google_compute_firewall" "default-dualstack-allow-tailscale-ipv6" {
@@ -86,4 +91,5 @@ resource "google_compute_firewall" "default-dualstack-allow-tailscale-ipv6" {
 
   source_ranges = ["::/0"]
   target_tags = ["tailscale"]
+  priority = 65534
 }
