@@ -2,16 +2,16 @@ resource "google_service_account" "hashicorp-vault" {
   account_id   = "hashicorp-vault"
 }
 
-# resource "google_storage_bucket" "hashicorp-vault" {
-#   name          = "rmb-lab-hashicorp-vault"
-#   location      = "US-CENTRAL1"
-# }
+resource "google_storage_bucket" "hashicorp-vault" {
+  name          = "rmb-lab-hashicorp-vault"
+  location      = "US-CENTRAL1"
+}
 
-# resource "google_storage_bucket_iam_member" "hashicorp-vault" {
-#   bucket = google_storage_bucket.hashicorp-vault.name
-#   role   = "roles/storage.objectAdmin"
-#   member = "serviceAccount:${google_service_account.hashicorp-vault.email}"
-# }
+resource "google_storage_bucket_iam_member" "hashicorp-vault" {
+  bucket = google_storage_bucket.hashicorp-vault.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${google_service_account.hashicorp-vault.email}"
+}
 
 resource "google_kms_key_ring" "hashicorp-vault" {
   name     = "hashicorp-vault"
