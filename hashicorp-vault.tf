@@ -41,56 +41,56 @@ resource "google_kms_crypto_key_iam_member" "hashicorp-vault-viewer" {
   member        = "serviceAccount:${google_service_account.hashicorp-vault.email}"
 }
 
-data "google_compute_image" "ubuntu-noble" {
-  family  = "ubuntu-2404-lts-amd64"
-  project = "ubuntu-os-cloud"
-}
+# data "google_compute_image" "ubuntu-noble" {
+#   family  = "ubuntu-2404-lts-amd64"
+#   project = "ubuntu-os-cloud"
+# }
 
-resource "google_compute_instance" "hashicorp-vault" {
-  name         = "hashicorp-vault"
-  machine_type = "e2-micro"
-  zone         = "us-central1-a"
+# resource "google_compute_instance" "hashicorp-vault" {
+#   name         = "hashicorp-vault"
+#   machine_type = "e2-micro"
+#   zone         = "us-central1-a"
 
-  allow_stopping_for_update = true
+#   allow_stopping_for_update = true
 
-  hostname = "hashi-vault.tailnet-047c.ts.net"
+#   hostname = "hashi-vault.tailnet-047c.ts.net"
 
-  tags = ["tailscale"]
+#   tags = ["tailscale"]
 
-  network_interface {
-    subnetwork = google_compute_subnetwork.default-dualstack-us-central1.name
-    stack_type = "IPV4_IPV6"
+#   network_interface {
+#     subnetwork = google_compute_subnetwork.default-dualstack-us-central1.name
+#     stack_type = "IPV4_IPV6"
 
-    access_config {
-      network_tier = "STANDARD"
-    }
+#     access_config {
+#       network_tier = "STANDARD"
+#     }
 
-    ipv6_access_config {
-      network_tier = "PREMIUM"
-    }
-  }
+#     ipv6_access_config {
+#       network_tier = "PREMIUM"
+#     }
+#   }
 
-  boot_disk {
-    initialize_params {
-      size  = "30"
-      type  = "pd-standard"
-      image = data.google_compute_image.ubuntu-noble.id
-    }
-  }
+#   boot_disk {
+#     initialize_params {
+#       size  = "30"
+#       type  = "pd-standard"
+#       image = data.google_compute_image.ubuntu-noble.id
+#     }
+#   }
 
-  shielded_instance_config {
-    enable_secure_boot          = true
-    enable_vtpm                 = true
-    enable_integrity_monitoring = true
-  }
+#   shielded_instance_config {
+#     enable_secure_boot          = true
+#     enable_vtpm                 = true
+#     enable_integrity_monitoring = true
+#   }
 
-  scheduling {
-    on_host_maintenance = "MIGRATE"
-    automatic_restart   = true
-  }
+#   scheduling {
+#     on_host_maintenance = "MIGRATE"
+#     automatic_restart   = true
+#   }
 
-  service_account {
-    email  = google_service_account.hashicorp-vault.email
-    scopes = ["cloud-platform", "storage-rw", "https://www.googleapis.com/auth/cloudkms"]
-  }
-}
+#   service_account {
+#     email  = google_service_account.hashicorp-vault.email
+#     scopes = ["cloud-platform", "storage-rw", "https://www.googleapis.com/auth/cloudkms"]
+#   }
+# }
