@@ -1,45 +1,45 @@
-resource "google_service_account" "hashicorp-vault" {
-  account_id = "hashicorp-vault"
-}
+# resource "google_service_account" "hashicorp-vault" {
+#   account_id = "hashicorp-vault"
+# }
 
-resource "google_storage_bucket" "hashicorp-vault" {
-  name     = "rmb-lab-hashicorp-vault"
-  location = "US-CENTRAL1"
-}
+# resource "google_storage_bucket" "hashicorp-vault" {
+#   name     = "rmb-lab-hashicorp-vault"
+#   location = "US-CENTRAL1"
+# }
 
-resource "google_storage_bucket_iam_member" "hashicorp-vault" {
-  bucket = google_storage_bucket.hashicorp-vault.name
-  role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${google_service_account.hashicorp-vault.email}"
-}
+# resource "google_storage_bucket_iam_member" "hashicorp-vault" {
+#   bucket = google_storage_bucket.hashicorp-vault.name
+#   role   = "roles/storage.objectAdmin"
+#   member = "serviceAccount:${google_service_account.hashicorp-vault.email}"
+# }
 
-resource "google_kms_key_ring" "hashicorp-vault" {
-  name     = "hashicorp-vault"
-  location = "global"
-}
+# resource "google_kms_key_ring" "hashicorp-vault" {
+#   name     = "hashicorp-vault"
+#   location = "global"
+# }
 
-resource "google_kms_crypto_key" "hashicorp-vault" {
-  name     = "hashicorp-vault"
-  key_ring = google_kms_key_ring.hashicorp-vault.id
+# resource "google_kms_crypto_key" "hashicorp-vault" {
+#   name     = "hashicorp-vault"
+#   key_ring = google_kms_key_ring.hashicorp-vault.id
 
-  rotation_period = "2592000s"
+#   rotation_period = "2592000s"
 
-  lifecycle {
-    prevent_destroy = true
-  }
-}
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+# }
 
-resource "google_kms_crypto_key_iam_member" "hashicorp-vault-encryptdecrypt" {
-  crypto_key_id = google_kms_crypto_key.hashicorp-vault.id
-  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  member        = "serviceAccount:${google_service_account.hashicorp-vault.email}"
-}
+# resource "google_kms_crypto_key_iam_member" "hashicorp-vault-encryptdecrypt" {
+#   crypto_key_id = google_kms_crypto_key.hashicorp-vault.id
+#   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+#   member        = "serviceAccount:${google_service_account.hashicorp-vault.email}"
+# }
 
-resource "google_kms_crypto_key_iam_member" "hashicorp-vault-viewer" {
-  crypto_key_id = google_kms_crypto_key.hashicorp-vault.id
-  role          = "roles/cloudkms.viewer"
-  member        = "serviceAccount:${google_service_account.hashicorp-vault.email}"
-}
+# resource "google_kms_crypto_key_iam_member" "hashicorp-vault-viewer" {
+#   crypto_key_id = google_kms_crypto_key.hashicorp-vault.id
+#   role          = "roles/cloudkms.viewer"
+#   member        = "serviceAccount:${google_service_account.hashicorp-vault.email}"
+# }
 
 # data "google_compute_image" "ubuntu-noble" {
 #   family  = "ubuntu-2404-lts-amd64"
