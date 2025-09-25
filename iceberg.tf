@@ -50,11 +50,6 @@ resource "google_bigquery_table" "osrs_prices_5m" {
     "mode": "REQUIRED"
   },
   {
-    "name": "item_id",
-    "type": "INTEGER",
-    "mode": "REQUIRED"
-  },
-  {
     "name": "name",
     "type": "STRING",
     "mode": "REQUIRED"
