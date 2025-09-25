@@ -40,10 +40,17 @@ resource "google_bigquery_table" "osrs_prices_5m" {
     table_format  = "ICEBERG"
   }
 
+  # default id columns in kafka connect should be item_id,timestamp
+
   schema = <<EOF
 [
   {
-    "name": "id",
+    "name": "item_id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "item_id",
     "type": "INTEGER",
     "mode": "REQUIRED"
   },
@@ -86,7 +93,7 @@ resource "google_bigquery_table" "osrs_prices_5m" {
     "name": "timestamp",
     "type": "TIMESTAMP",
     "mode": "REQUIRED"
-  },
+  }
 ]
 EOF
 
