@@ -12,7 +12,7 @@ resource "google_storage_bucket" "iceberg" {
 
 resource "google_bigquery_connection" "iceberg" {
   connection_id = "iceberg-us-central1"
-  location      = "us-central1"
+  location      = google_storage_bucket.iceberg.location
   cloud_resource {}
 }
 
@@ -21,12 +21,12 @@ data "google_project" "default" {}
 resource "google_project_iam_member" "iceberg" {
   project = data.google_project.default.project_id
   role    = "roles/storage.objectViewer"
-  member  = "serviceAccount:${google_bigquery_connection.default.cloud_resource[0].service_account_id}"
+  member  = "serviceAccount:${google_bigquery_connection.iceberg.cloud_resource[0].service_account_id}"
 }
 
 resource "google_bigquery_dataset" "iceberg" {
-  dataset_id = "iceberg-us-central1"
-  location   = "us-central1"
+  dataset_id = "iceberg_us_central1"
+  location   = google_storage_bucket.iceberg.location
 }
 
 resource "google_bigquery_table" "osrs_prices_5m" {
@@ -34,7 +34,7 @@ resource "google_bigquery_table" "osrs_prices_5m" {
   table_id   = "osrs_prices_5m"
 
   biglake_configuration {
-    connection_id = google_bigquery_connection.iceberg_connection.id
+    connection_id = google_bigquery_connection.iceberg.id
     file_format   = "PARQUET"
     storage_uri   = "gs://${google_storage_bucket.iceberg.name}/iceberg-data/"
     table_format  = "ICEBERG"
