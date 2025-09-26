@@ -39,6 +39,10 @@ resource "google_bigquery_table" "osrs_prices_5m" {
   dataset_id = google_bigquery_dataset.iceberg.dataset_id
   table_id   = "osrs_prices_5m"
 
+  lifecycle {
+    ignore_changes = [external_catalog_table_options]
+  }
+
   biglake_configuration {
     connection_id = google_bigquery_connection.iceberg.id
     file_format   = "PARQUET"
@@ -68,7 +72,7 @@ resource "google_bigquery_table" "osrs_prices_5m" {
   {
     "name": "avgLowPrice",
     "type": "INTEGER",
-    "mode": "REQUIRED"
+    "mode": "NULLABLE"
   },
   {
     "name": "lowPriceVolume",
