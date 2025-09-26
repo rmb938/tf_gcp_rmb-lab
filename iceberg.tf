@@ -70,11 +70,6 @@ resource "google_bigquery_table" "osrs_prices_5m" {
     "mode": "NULLABLE"
   },
   {
-    "name": "lowPriceVolume",
-    "type": "INTEGER",
-    "mode": "NULLABLE"
-  },
-  {
     "name": "avgHighPrice",
     "type": "INTEGER",
     "mode": "NULLABLE"
