@@ -18,10 +18,16 @@ resource "google_bigquery_connection" "iceberg" {
 
 data "google_project" "default" {}
 
-resource "google_project_iam_member" "iceberg" {
-  project = data.google_project.default.project_id
-  role    = "roles/storage.objectAdmin"
-  member  = "serviceAccount:${google_bigquery_connection.iceberg.cloud_resource[0].service_account_id}"
+resource "google_storage_bucket_iam_member" "iceberg_obj_admin" {
+  bucket = google_storage_bucket.tf_hashicorp_vault_apps.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${google_bigquery_connection.iceberg.cloud_resource[0].service_account_id}"
+}
+
+resource "google_storage_bucket_iam_member" "iceberg_leg_bucket_reader" {
+  bucket = google_storage_bucket.tf_hashicorp_vault_apps.name
+  role   = "roles/storage.legacyBucketReader"
+  member = "serviceAccount:${google_bigquery_connection.iceberg.cloud_resource[0].service_account_id}"
 }
 
 resource "google_bigquery_dataset" "iceberg" {
