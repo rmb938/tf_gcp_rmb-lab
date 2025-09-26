@@ -20,7 +20,7 @@ data "google_project" "default" {}
 
 resource "google_project_iam_member" "iceberg" {
   project = data.google_project.default.project_id
-  role    = "roles/storage.objectViewer"
+  role    = "roles/storage.objectAdmin"
   member  = "serviceAccount:${google_bigquery_connection.iceberg.cloud_resource[0].service_account_id}"
 }
 
