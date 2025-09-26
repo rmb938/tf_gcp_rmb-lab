@@ -68,7 +68,7 @@ resource "google_bigquery_table" "osrs_prices_5m" {
   {
     "name": "avgLowPrice",
     "type": "INTEGER",
-    "mode": "REQUIRED"
+    "mode": "NULLABLE"
   },
   {
     "name": "lowPriceVolume",
