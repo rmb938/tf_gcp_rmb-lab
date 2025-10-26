@@ -1,5 +1,5 @@
-resource "google_storage_bucket" "twin_cities_kafka_meetup_2025_oct_02" {
-  name          = "rmb-lab-twin_cities_kafka_meetup_2025_oct_02"
+resource "google_storage_bucket" "vancouver_kafka_meetup_2025_nov_19" {
+  name          = "rmb-lab-vancouver_kafka_meetup_2025_nov_19"
   force_destroy = true
 
   uniform_bucket_level_access = true
@@ -23,12 +23,12 @@ resource "google_storage_bucket" "twin_cities_kafka_meetup_2025_oct_02" {
   }
 }
 
-resource "google_service_account" "twin_cities_kafka_meetup_2025_oct_02" {
-  account_id = "twc-kafka-meetup-2025-oct-02"
+resource "google_service_account" "vancouver_kafka_meetup_2025_nov_19" {
+  account_id = "van-kafka-meetup-2025-nov-19"
 }
 
-resource "google_storage_bucket_iam_member" "twin_cities_kafka_meetup_2025_oct_02" {
-  bucket = google_storage_bucket.twin_cities_kafka_meetup_2025_oct_02.name
+resource "google_storage_bucket_iam_member" "vancouver_kafka_meetup_2025_nov_19" {
+  bucket = google_storage_bucket.vancouver_kafka_meetup_2025_nov_19.name
   role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${google_service_account.twin_cities_kafka_meetup_2025_oct_02.email}"
+  member = "serviceAccount:${google_service_account.vancouver_kafka_meetup_2025_nov_19.email}"
 }
